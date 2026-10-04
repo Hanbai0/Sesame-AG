@@ -28,7 +28,6 @@ android {
                 isUniversalApk = true
             }
         }
-
     }
     // 使用providers API来支持配置缓存
     val gitCommitCount: Int = providers.exec {
@@ -53,11 +52,6 @@ android {
 
         buildConfigField("String", "BUILD_DATE", "\"$buildDate\"")
         buildConfigField("String", "BUILD_TIME", "\"$buildTime\"")
-        if (isCIBuild) {
-            ndk {
-                abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
-            }
-        }
 
         testOptions {
             unitTests.all {
@@ -65,8 +59,6 @@ android {
             }
         }
     }
-
-
 
     buildFeatures {
         viewBinding = true
@@ -76,7 +68,7 @@ android {
     }
 
     compileOptions {
-        isCoreLibraryDesugaringEnabled = false//关闭脱糖
+        isCoreLibraryDesugaringEnabled = false // 关闭脱糖
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -179,7 +171,7 @@ dependencies {
     implementation(libs.activity.compose)           // Compose Activity 支持
 
     // Android 核心库
-    implementation(libs.core.ktx)                   // Android KTX 核心扩展
+    implementation(libs.core.ktx)                    // Android KTX 核心扩展
     implementation(libs.kotlin.stdlib)              // Kotlin 标准库
     implementation(libs.slf4j.api)                  // SLF4J 日志 API
     implementation(libs.logback.android)            // Logback Android 日志实现
